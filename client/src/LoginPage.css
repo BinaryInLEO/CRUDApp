@@ -1,3 +1,39 @@
-.LoginPage {
-  text-align: center;
+Body {
+  background-color: #5978f4;
+}
+
+.login-page {
+  min-height: 10vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-size:larger;
+  color: rgb(255, 255, 255);
+}
+
+.input-login {
+  height: 20px;
+  border-radius: 3px;
+  border: black;
+  margin: 5px;
+  font-size:medium;
+  text-decoration-color: black;
+}
+
+.submit-button {
+  height: 20px;
+  width: 150px;
+  margin: 5px;
+  font-size: medium;
+  color:black;
+  cursor:pointer;
+}
+
+.inventory-button {
+  height: 20px;
+  width: 150px;
+  font-size: medium;
+  color:black;
+  cursor: pointer;
 }

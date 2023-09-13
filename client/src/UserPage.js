@@ -16,7 +16,7 @@ function UserPage() {
   }, []);
 
   return (
-    <div>
+    <div className="user-page">
       <h3> User Page</h3>
       <ul>
 

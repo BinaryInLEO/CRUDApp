@@ -25,12 +25,20 @@ function LoginPage() {
         return navigate(`/users/${i+1}`)
   }
 
+  let handleLink= () => {
+    return navigate(`/items/`)
+  }
+
   return (
-    <div>
+    <div className="login-page">
+
       <h3> Login Page</h3>
-      <input value={username} placeholder="username" onChange={e => setUsername(e.target.value)}/>
-      <input value={password} placeholder="password" onChange={e => setPassword(e.target.value)} />
-      <button type="submit" onClick={handleLogin}>Login</button>
+      <input className="input-login" value={username} placeholder="username" onChange={e => setUsername(e.target.value)}/>
+      <input type="password" className="input-login" value={password} placeholder="password" onChange={e => setPassword(e.target.value)} />
+      <button className="submit-button" type="submit" onClick={handleLogin}>Login</button>
+
+      <h4> Inventory </h4>
+      <button className="inventory-button" onClick={handleLink}>Inventory Link</button>
 
     </div>
   );

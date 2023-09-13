@@ -1,5 +1,5 @@
 import React from "react";
-import "./UserPage.css";
+import "./UserPageDetails.css";
 import { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 
@@ -34,37 +34,41 @@ function UserPageDetails() {
   };
 
   let handleItemAdd = () => {
+      // fetch(`http://localhost:8080/items`, {
+      //   method: "POST",
+      //   mode: "cors",
+      //   body: JSON.stringify([{
+      //     "UserID": id,
+      //     "ItemName": itemName,
+      //     "Description": itemDescription,
+      //     "Quantity": itemQuantity
+      //   }]),
+      // })
+      // .then(res => res.json())
+      // .then(res => console.log(res))
+      // .catch(err => console.log(err))
 
-
-      fetch(`http://localhost:8080/items`, {
-        method: "POST",
-        mode: "cors",
-        body: JSON.stringify([{
-          "UserID": id,
-          "ItemName": itemName,
-          "Description": itemDescription,
-          "Quantity": itemQuantity
-        }]),
-      }).then(res => res.json()).then(res => console.log(res)).catch(err => console.log(err))
+      //This fetch does not work. Making post request in postman does work
+      //Lost too much time trying to debug this fetch request. Skipping for MVP
   };
 
   return (
-    <div>
+    <div className="user">
       <h3> User Page </h3>
       <h4>
         {user.FirstName} {user.LastName}{" "}
       </h4>
 
-      <ul>
+      <ul className="user-list">
         {filterByID.map((i) => (
-          <li id={i.id} key={i.id}>
+          <li className="li-list" id={i.id} key={i.id}>
             {" "}
             Item {i.id}
             <p></p>
-            <h4>Name: {i.ItemName}</h4>
-            <p>Description: {i.Description}</p>
-            <p>Quantity: {i.Quantity}</p>
-            <button onClick={() => handleDelete(i.id)}>Delete</button>
+            <h4 className="item-info">Name: {i.ItemName}</h4>
+            <p className="item-info">Description: {i.Description}</p>
+            <p className="item-info">Quantity: {i.Quantity}</p>
+            <button className="button" onClick={() => handleDelete(i.id)}>Delete</button>
           </li>
         ))}
       </ul>
@@ -73,7 +77,7 @@ function UserPageDetails() {
       <input value={itemName} placeholder="Add Item Name" onChange={e => setItemName(e.target.value)}/>
       <input value={itemDescription} placeholder="Add Item Description" onChange={e => setItemDescription(e.target.value)} />
       <input value={itemQuantity} placeholder="Add Item Quantity" onChange={e => setItemQuantity(e.target.value)} />
-      <button type="submit" onClick={handleItemAdd}>Add Item</button>
+      <button className="button" type="submit" onClick={handleItemAdd}>Add Item</button>
     </div>
   );
 }
