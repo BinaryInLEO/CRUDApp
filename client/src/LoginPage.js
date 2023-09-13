@@ -28,7 +28,6 @@ function LoginPage() {
   return (
     <div>
       <h3> Login Page</h3>
-
       <input value={username} placeholder="username" onChange={e => setUsername(e.target.value)}/>
       <input value={password} placeholder="password" onChange={e => setPassword(e.target.value)} />
       <button type="submit" onClick={handleLogin}>Login</button>

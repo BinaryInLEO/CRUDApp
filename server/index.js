@@ -53,14 +53,14 @@ app.patch('/users/:id', (req, res) => {
       Username: req.body.Username,
       Password: req.body.Password,
     })
-    .then((updateRows) => res.status(200).send('user updated'))
+    .then((updateRows) => res.send('user updated'))
 })
 
 app.delete('/users/:id', (req, res) => {
   knex('users')
     .where({ id: req.params.id })
     .del()
-    .then(res.status(200).send('user deleted'))
+    .then(res.send('user deleted'))
 })
 
 app.get('/items', (req, res) => {
@@ -76,19 +76,20 @@ app.get('/items/:id', (req, res) => {
     .then((item) => {res.send(item)});
 })
 
-// app.post('/items', (req, res) => {
-//   knex("items")
-//   .insert(req.body)
-//   .then((newItem) => {
-//     res.send(
-//       req.body.UserID,
-//       req.body.ItemName,
-//       req.body.Description,
-//       req.body.Quantity,
-//     );
-//       console.log('post was successful')
-//   })
-// }) // does not work, foreign id causing issues, skipped for MVP
+app.post('/items', (req, res) => {
+  knex('users')
+    .where({ id: req.body.UserID })
+    .then((users) => {knex('items')
+          .insert({
+            UserID: req.body.UserID,
+            ItemName: req.body.ItemName,
+            Description: req.body.Description,
+            Quantity: req.body.Quantity,
+          })
+          .then(res.send('item created')
+          )
+    })
+});
 
 app.patch('/items/:id', (req, res) => {
   knex('items')
@@ -99,14 +100,14 @@ app.patch('/items/:id', (req, res) => {
       Description: req.body.Description,
       Quantity: req.body.Quantity,
     })
-    .then((updateRows) => res.status(200).send('item updated'))
+    .then(res.send('item updated'))
 })
 
 app.delete('/items/:id', (req, res) => {
   knex('items')
     .where({ id: req.params.id })
     .del()
-    .then(res.status(200).send('item deleted'))
+    .then(res.send('item deleted'))
 })
 
 app.listen(port, () => console.log(`Express server listening in on port ${port}`))
