@@ -22,7 +22,7 @@ function InventoryDetails() {
     <div className="inventory-details">
       <h3> Item Page </h3>
 
-      <ul>
+      <ul className="no-bullet">
         {filterByID.map((i) => (
           <li id={i.id} key={i.id}>
             {" "}

@@ -10,3 +10,7 @@
   background-color: white;
   margin: 10%;
 }
+
+.no-bullet {
+  list-style-type: none;
+}
