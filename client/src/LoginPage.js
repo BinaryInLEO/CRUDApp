@@ -22,7 +22,7 @@ function LoginPage() {
   let handleLogin= () => {
     for (let i = 0; i < users.length; i++)
       if (username === users[i].Username && password === users[i].Password)
-        return navigate(`/users/${i+1}`)
+        return navigate(`/users/${users[i].id}`)
   }
 
   let handleLink= () => {

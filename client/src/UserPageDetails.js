@@ -52,12 +52,12 @@ function UserPageDetails() {
   let handleItemAdd = () => {
       // fetch(`http://localhost:8080/items`, {
       //   method: "POST",
-      //   mode: "cors",
+      //   headers: {"Content-Type": "application/json"},
       //   body: JSON.stringify([{
-      //     "UserID": id,
-      //     "ItemName": itemName,
-      //     "Description": itemDescription,
-      //     "Quantity": itemQuantity
+      //     UserID: id,
+      //     ItemName: itemName,
+      //     Description: itemDescription,
+      //     Quantity: itemQuantity
       //   }]),
       // })
       // .then(res => res.json())
