@@ -10,6 +10,9 @@ function UserPageDetails() {
   const [itemName, setItemName] = useState("");
   const [itemDescription, setItemDescription] = useState("");
   const [itemQuantity, setItemQuantity] = useState("");
+  const [itemnamechange, setItemNameChange] = useState("");
+  const [descriptionchange, setDescriptionChange] = useState("");
+  const [quantitychange, setQuantityChange] = useState("");
 
   let { id } = useParams();
 
@@ -31,6 +34,19 @@ function UserPageDetails() {
 
   let handleDelete = (i) => {
     fetch(`http://localhost:8080/items/${i}`, { method: "DELETE" });
+  };
+
+  let handleChange = (i) => {
+    fetch(`http://localhost:8080/items/${i}`, {
+      method: "PATCH",
+      headers: {"Content-Type": "application/json"},
+      body: JSON.stringify({
+        UserID: id,
+        ItemName: itemnamechange,
+        Description: descriptionchange,
+        Quantity: quantitychange
+      })
+    });
   };
 
   let handleItemAdd = () => {
@@ -62,18 +78,23 @@ function UserPageDetails() {
       <ul className="user-list">
         {filterByID.map((i) => (
           <li className="li-list" id={i.id} key={i.id}>
-            {" "}
-            Item {i.id}
-            <p></p>
+
+            <h3>Item # {i.id}</h3>
             <h4 className="item-info">Name: {i.ItemName}</h4>
             <p className="item-info">Description: {i.Description}</p>
             <p className="item-info">Quantity: {i.Quantity}</p>
             <button className="button" onClick={() => handleDelete(i.id)}>Delete</button>
+
+            <p> Enter the information below if you want to update this item </p>
+            <input value={itemnamechange} placeholder="Item Name" onChange={e => setItemNameChange(e.target.value)}/>
+            <input value={descriptionchange} placeholder="Description" onChange={e => setDescriptionChange(e.target.value)}/>
+            <input value={quantitychange} placeholder="Quantity" onChange={e => setQuantityChange(e.target.value)}/>
+            <button className="button" onClick={() => handleChange(i.id)}>Update Item</button>
           </li>
         ))}
       </ul>
 
-      <h3> Add Item </h3>
+      <h3> Add Item **Currently Bugged, Disabled until fixed**</h3>
       <input value={itemName} placeholder="Add Item Name" onChange={e => setItemName(e.target.value)}/>
       <input value={itemDescription} placeholder="Add Item Description" onChange={e => setItemDescription(e.target.value)} />
       <input value={itemQuantity} placeholder="Add Item Quantity" onChange={e => setItemQuantity(e.target.value)} />
