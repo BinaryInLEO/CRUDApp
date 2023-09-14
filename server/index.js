@@ -77,9 +77,9 @@ app.get('/items/:id', (req, res) => {
 })
 
 app.post('/items', (req, res) => {
-  knex('users')
-    .where({ id: req.body.UserID })
-    .then((users) => {knex('items')
+  knex('users').where({ id: req.body.UserID })
+    .then((items) => {
+    knex('items')
           .insert({
             UserID: req.body.UserID,
             ItemName: req.body.ItemName,
