@@ -5,6 +5,7 @@ import UserPage from "./UserPage";
 import UserPageDetails from "./UserPageDetails"
 import Inventory from "./Inventory"
 import InventoryDetails from "./InventoryDetails"
+import Account from "./Account"
 
 function App() {
   return (
@@ -16,6 +17,7 @@ function App() {
         <Route path="/users/:id" element={<UserPageDetails />}/>
         <Route path="/items" element={<Inventory />}/>
         <Route path="/items/:id" element={<InventoryDetails />}/>
+        <Route path="/account" element={<Account />}/>
       </Routes>
     </Router>
 
