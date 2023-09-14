@@ -1,7 +1,8 @@
 import React from "react";
 import './Account.css';
 import { useState, useEffect } from "react";
-import { Link } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
+
 
 
 function Account() {
@@ -9,7 +10,10 @@ function Account() {
   const [lastname, setLastName] = useState("")
   const [username, setUserName] = useState("")
   const [password, setPassword] = useState("")
+  const [accountCreated, setAccountCreated] = useState(false)
 
+
+  let navigate = useNavigate();
 
   let handleSubmit = () => {
     fetch(`http://localhost:8080/users`, {
@@ -21,10 +25,14 @@ function Account() {
         Username: username,
         Password: password
       })
-  });
+  },
+  setAccountCreated(true),
+
+  setTimeout(() => {navigate(`/`)}, 5000)
+
+
+  );
   };
-
-
 
   return (
     <div className="inventory">
@@ -51,6 +59,7 @@ function Account() {
            <input type="password" className="input-login" value={password} placeholder="Password" onChange={e => setPassword(e.target.value)}/>
           </div>
           <button className="submit-button" type="submit" onClick={handleSubmit}>Create Account</button>
+          <p> { accountCreated ? 'Account Created! Please wait to be redirect to the login page!' : " "} </p>
 
 
     </div>
